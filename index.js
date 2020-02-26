@@ -145,9 +145,15 @@ editor.addKeyMap({
     'Ctrl-K': function(cm) {
         cm.replaceSelection(selectionChanger(cm.getSelection(),'`'));
     },
-    // keyboard shortcut
-    'Ctrl-L': function(cm) {
-        cm.replaceSelection(selectionChanger(cm.getSelection(),'<kbd>','</kbd>'));
+
+    // Open file
+    'Ctrl-O': function(cm) {
+        document.getElementById('fileInput').click();
+    },
+
+    // Save file
+    'Ctrl-S': function(cm) {
+        showMenu();
     }
 });
 
@@ -169,19 +175,22 @@ function saveAsMarkdown() {
 }
 
 //Print the document named as the document title encoded to avoid strange chars and spaces
-function saveAsHtml() {
-    save(document.getElementById('out').innerHTML, document.title.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\s]/gi, '') + ".html");
+function saveAsPDF() {
+    // save html -> save(document.getElementById('out').innerHTML, document.title.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\s]/gi, '') + ".html");
+    window.print()
 }
 
-document.getElementById('saveas-markdown').addEventListener('click', function() {
+// document.getElementById('saveas-markdown').addEventListener('click', function() {
+function do_saveMarkdown(){
+    hideMenu();
     saveAsMarkdown();
-    hideMenu();
-});
+}
 
-document.getElementById('saveas-html').addEventListener('click', function() {
-    saveAsHtml();
+// document.getElementById('saveas-pdf').addEventListener('click', function() {
+function do_savePDF(){
     hideMenu();
-});
+    saveAsPDF();
+}
 
 function save(code, name) {
     var blob = new Blob([code], {
@@ -330,6 +339,7 @@ function processQueryParams() {
 
 function start() {
     processQueryParams();
+    console.log(window.location.hash)
     if (window.location.hash) {
         var h = window.location.hash.replace(/^#/, '');
         if (h.slice(0, 5) == 'view:') {
