@@ -163,7 +163,16 @@
 
  .view #out {
      left: 0;
-     padding-left: 10px;
+     left: 0 !important;
+     bottom: 0;
+     height: 100%;
+     top: 40px !important;
+     position: static !important;
+     filter: invert(0%) !important;
+     width: 100% !important;
+     padding: 20px;
+     background-color: white;
+     border-left: none !important;
  }
 
  #navbar {
@@ -297,12 +306,17 @@ body{
      #in {
          display: none !important;
      }
+     body {
+        background-color: white !important;
+     }
      #out {
          left: 0 !important;
          top: 0 !important;
          position: static !important;
-         border-width: 0px !important;
          filter: invert(0%) !important;
+         background-color: white;
+         border-left: none !important;
+         bottom: 0;
      }
      #navbar {
          display: none !important;
