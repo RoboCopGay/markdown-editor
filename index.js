@@ -59,7 +59,7 @@ User: @austinmm
 */
 var render_tasklist = function(str){
     // Checked task-list box match
-	if(str.match(/<li>\[x\]\s+\w+/gi)){
+    if(str.match(/<li>\[x\]\s+\w+/gi)){
         str = str.replace(/(<li)(>\[x\]\s+)(\w+)/gi, 
           `$1 style="list-style-type: none;"><input type="checkbox" 
           checked style="list-style-type: none; 
